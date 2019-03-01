@@ -16,7 +16,7 @@ window.addEventListener('resize', () => {
 })
 
 const NODE_RADIUS = 5
-const NODE_COUNT = 800
+const NODE_COUNT = 2000
 const SPEED = 4
 const PLAYBACK_SPEED = 3
 const BORDER = 30
@@ -217,7 +217,7 @@ function logic() {
             const b = field.particles[j1]
             applyForce(a, b)
         }
-        let iNext, jNext, field1
+        let field1
 
         if (field.i < fw - 1) {
             field1 = fields[field.i + 1][field.j]
@@ -233,11 +233,12 @@ function logic() {
                 applyForce(a, b)
             }
         }
-        if (field.i < fw - 1 && field.j < fh - 1)
+        if (field.i < fw - 1 && field.j < fh - 1) {
         field1 = fields[field.i + 1][field.j + 1]
-        for (let j1 = 0; j1 < field1.particles.length; j1++) {
-            const b = field1.particles[j1]
-            applyForce(a, b)
+            for (let j1 = 0; j1 < field1.particles.length; j1++) {
+                const b = field1.particles[j1]
+                applyForce(a, b)
+            }
         }
     })))
 }
