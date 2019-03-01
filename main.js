@@ -89,7 +89,7 @@ class Field {
 // array for dividing scene into parts to reduce complexity
 /** @type {Field[][]} */
 const fields = Array.from(
-    { length: fw }, 
+    { length: fw },
     (_, i) => Array.from({ length: fh }, (_, j) => new Field(i, j) )
 )
 
@@ -219,20 +219,22 @@ function logic() {
         }
         let iNext, jNext, field1
 
-        iNext = field.i + 1
-        field1 = fields[iNext][field.j]
-        for (let j1 = 0; j1 < field1.particles.length; j1++) {
-            const b = field1.particles[j1]
-            applyForce(a, b)
+        if (field.i < fw - 1) {
+            field1 = fields[field.i + 1][field.j]
+            for (let j1 = 0; j1 < field1.particles.length; j1++) {
+                const b = field1.particles[j1]
+                applyForce(a, b)
+            }
         }
-        jNext = field.j + 1
-        field1 = fields[field.i][jNext]
-        for (let j1 = 0; j1 < field1.particles.length; j1++) {
-            const b = field1.particles[j1]
-            applyForce(a, b)
+        if (field.j < fh - 1) {
+            field1 = fields[field.i][field.j + 1]
+            for (let j1 = 0; j1 < field1.particles.length; j1++) {
+                const b = field1.particles[j1]
+                applyForce(a, b)
+            }
         }
-        iNext = field.i + 1
-        field1 = fields[iNext][jNext]
+        if (field.i < fw - 1 && field.j < fh - 1)
+        field1 = fields[field.i + 1][field.j + 1]
         for (let j1 = 0; j1 < field1.particles.length; j1++) {
             const b = field1.particles[j1]
             applyForce(a, b)
