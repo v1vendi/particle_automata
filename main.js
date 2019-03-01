@@ -16,7 +16,7 @@ window.addEventListener('resize', () => {
 })
 
 const NODE_RADIUS = 5
-const NODE_COUNT = 2000
+const NODE_COUNT = 1000
 const SPEED = 4
 const PLAYBACK_SPEED = 3
 const BORDER = 30
